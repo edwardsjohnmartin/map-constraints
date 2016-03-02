@@ -1,9 +1,9 @@
 "use strict";
 
-const NORTH = "north";
-const SOUTH = "south";
-const EAST = "east";
-const WEST = "west";
+var NORTH = "north";
+var SOUTH = "south";
+var EAST = "east";
+var WEST = "west";
 // <this> is <dir> of targetElement
 var DirConstraint = function(dir) {
   this.dir = dir;
@@ -26,9 +26,9 @@ DirConstraint.prototype.getOpposite = function() {
   }
 }
 
-const CITY = "city";
-const LAND = "land";
-const RIVER = "river";
+var CITY = "city";
+var LAND = "land";
+var RIVER = "river";
 var Element = function(name, type, p) {
   this.name = name;
   this.type = type;
@@ -65,22 +65,22 @@ addConstraint("Ammonihah", "Zarahemla", new DirConstraint(NORTH));
 
 var selected = 0;
 
-const frustumDim = 6;
+var frustumDim = 6;
 
-const red = vec4(1, 0, 0, 1);
-const green = vec4(0, 1, 0, 1);
-const darkGreen = vec4(0, 0.7, 0.2, 1);
-const blue = vec4(0, 0, 1, 1);
-const cyan = vec4(0, 1, 1, 1);
-const magenta = vec4(1, 0, 1, 1);
-const darkMagenta = vec4(0.8, 0, 0.8, 1);
-const yellow = vec4(1, 1, 0, 1);
-const orange = vec4(0.8, 0.6, 0.0);
-const burntOrange = vec4(0.81, 0.33, 0.0);
-const gray = vec4(.5, .5, .5, 1);
-const lightGray = vec4(0.8, 0.8, 0.8, 1);
-const black = vec4(0, 0, 0, 1);
-const white = vec4(1, 1, 1, 1);
+var red = vec4(1, 0, 0, 1);
+var green = vec4(0, 1, 0, 1);
+var darkGreen = vec4(0, 0.7, 0.2, 1);
+var blue = vec4(0, 0, 1, 1);
+var cyan = vec4(0, 1, 1, 1);
+var magenta = vec4(1, 0, 1, 1);
+var darkMagenta = vec4(0.8, 0, 0.8, 1);
+var yellow = vec4(1, 1, 0, 1);
+var orange = vec4(0.8, 0.6, 0.0);
+var burntOrange = vec4(0.81, 0.33, 0.0);
+var gray = vec4(.5, .5, .5, 1);
+var lightGray = vec4(0.8, 0.8, 0.8, 1);
+var black = vec4(0, 0, 0, 1);
+var white = vec4(1, 1, 1, 1);
 
 var canvas;
 var canvasWidth, canvasHeight;
@@ -109,8 +109,8 @@ var rotAngle = 0;
 var rotMatrix = mat4(1.0);
 var zoom = 1;
 var downZoom = 1;
-const LEFT_BUTTON = 0;
-const RIGHT_BUTTON = 2;
+var LEFT_BUTTON = 0;
+var RIGHT_BUTTON = 2;
 
 // What to render
 var showCircles = true;
@@ -136,8 +136,8 @@ function renderConnection(p, q) {
 
   pushMatrix();
   mvMatrix = mult(mvMatrix, translate(q));
-  const v = subtract(p, q);
-  const theta = degrees(Math.atan2(v[1], v[0]));
+  var v = subtract(p, q);
+  var theta = degrees(Math.atan2(v[1], v[0]));
   mvMatrix = mult(mvMatrix, rotateZ(theta));
   mvMatrix = mult(mvMatrix, scalem(length(v), length(v), 1));
 
@@ -179,7 +179,7 @@ function renderCircle(selected) {
 
 function renderCircles() {
   pushMatrix();
-  const s = 1/10;
+  var s = 1/10;
   var success = true;
   for (var i = 0; i < elements.length; i++) { 
     pushMatrix();
@@ -199,7 +199,7 @@ function render() {
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-  const at = vec3(0.0, 0.0, 0.0);
+  var at = vec3(0.0, 0.0, 0.0);
   var up = vec3(0.0, 1.0, 0.0);
   var eye = vec3(0, 0, 1);
 
@@ -224,7 +224,7 @@ function render() {
 
   var success = true;
 
-  const element = elements[selected];
+  var element = elements[selected];
   for (var i = 0; i < element.constraints.length; ++i) {
     renderConnection(element.p, element.constraints[i].targetElement.p);
   }
@@ -367,12 +367,12 @@ function onMouseMove(e) {
 
     // arcball - will use when we start using elevation
     // if (!zooming) {
-    //   const down_v = mapMouse(mouseDownPos);
-    //   const v = mapMouse(mousePos);
+    //   var down_v = mapMouse(mouseDownPos);
+    //   var v = mapMouse(mousePos);
     //   rotVec = normalize(cross(down_v, v));
     //   rotAngle = Math.acos(dot(down_v, v) / length(v));
     // } else {
-    //   const factor = 2;
+    //   var factor = 2;
     //   zoom = downZoom * Math.pow(factor, mousePos[1] - mouseDownPos[1]);
     // }
     // render();
@@ -383,11 +383,11 @@ function mapMouse(p) {
   var x = p[0];
   var y = p[1];
   if (x*x + y*y > 1) {
-    const len = Math.sqrt(x*x + y*y);
+    var len = Math.sqrt(x*x + y*y);
     x = x/len;
     y = y/len;
   }
-  const z = Math.sqrt(Math.max(0.0, 1 - x*x - y*y));
+  var z = Math.sqrt(Math.max(0.0, 1 - x*x - y*y));
   return vec3(x, y, z);
 }
 
@@ -451,7 +451,7 @@ function updateProperties() {
   fw *= zoom;
   fh *= zoom;
 
-  const element = elements[selected];
+  var element = elements[selected];
 
   var table = document.createElement("table");
 
@@ -504,7 +504,7 @@ function updateProperties() {
   
   // Constraints
   for (var i = 0; i < element.constraints.length; ++i) {
-    const constraint = element.constraints[i];
+    var constraint = element.constraints[i];
     var row = table.insertRow(table.rows.length);
     var desc = row.insertCell(0);
     desc.align = "right";
@@ -530,7 +530,7 @@ function updateLabels() {
   }
 
   for (var i = 0; i < elements.length; ++i) {
-    const winp = obj2win(elements[i].p);
+    var winp = obj2win(elements[i].p);
     var e = document.createElement("div");
     var t = document.createTextNode(elements[i].name);
     e.appendChild(t);
