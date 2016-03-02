@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./font-awesome-4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="map-style.css">
+  
+  <!------------------------------------------------------------>
+  <!------------------------- Javascript ----------------------->
+  <!------------------------------------------------------------>
+
+  <script type="text/javascript" src="./common/webgl-utils.js"></script>
+  <script type="text/javascript" src="./common/initShaders.js"></script>
+  <script type="text/javascript" src="./common/MV.js"></script>
+
+  <script type="text/javascript" src="programs.js"></script>
+  <script type="text/javascript" src="circle.js"></script>
+  <script type="text/javascript" src="segment.js"></script>
+  <script type="text/javascript" src="map.js"></script>
+  
+  </head>
+
+  <body>
+    <!--canvas id="gl-canvas" width="512" height="512"-->
+    <canvas class="canvas" id="gl-canvas">
+      Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+
+    <!-- Properties -->
+    <div id="labels" class="labels">
+    </div>
+
+    <!-- Properties -->
+    <div id="properties" class="properties">
+      <table border="0">
+        <tr>
+          <td align="right">(x,y):</td>
+          <td>
+            (<input
+                  type="text"
+                  class="number"
+                  id="x"
+                  value="1"
+                  step="0.25"
+                  onchange="x0Changed()">,
+            <input
+               type="text"
+               class="number"
+               id="y"
+               value="1"
+               step="0.25"
+               onchange="y0Changed()">)
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Moment:</td>
+          <td><input
+                 type="text"
+                 class="number"
+                 id="degrees"
+                 value="0"
+                 onchange="moment0Changed()"> degrees
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Force eddy:</td>
+          <td><input
+                 type="text"
+                 class="number"
+                 id="fEddy"
+                 value="0"
+                 onchange="fEddyChanged()"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Torque eddy:</td>
+          <td><input
+                 type="text"
+                 class="number"
+                 id="tEddy"
+                 value="0"
+                 onchange="tEddyChanged()"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Force friction:</td>
+          <td><input
+                 type="text"
+                 class="number"
+                 id="fFriction"
+                 value="0"
+                 onchange="fFrictionChanged()"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Torque friction:</td>
+          <td><input
+                 type="text"
+                 class="number"
+                 id="tFriction"
+                 value="0"
+                 onchange="tFrictionChanged()"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Collisions:</td>
+          <td><select
+                 id="collisionType"
+                 value="1"
+                 onchange="collisionTypeChanged()">
+              <option value="0" selected="selected">Elastic</option>
+              <option value="1">Inelastic</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Simulation speed (dt):</td>
+          <td><input
+                 type="text"
+                 class="number"
+                 id="simSpeed"
+                 onchange="simSpeedChanged()"
+                 value="2.9"
+                 step="1"/>x10<sup>-4</sup>
+          </td>
+        </tr>
+        <!--tr>
+          <td align="right">Animation speed:</td>
+          <td><input
+                 type="text"
+                 class="number"
+                 id="animSpeed"
+                 value="500"
+                 step="1" hidden/>
+          </td>
+        </tr-->
+        <tr>
+          <td colspan="2" align="center">
+            <label>
+              <input
+                 type="checkbox"
+                 id="updateP"
+                 onclick="transRotClicked()"
+                 onfocus="removeFocus()"
+                 checked>Translate
+            </label>
+            <label>
+              <input
+                 type="checkbox"
+                 id="updateM"
+                 onclick="transRotClicked()"
+                 onfocus="removeFocus()"
+                 checked>Rotate<br>
+            </label>
+          </td>
+      </table>
+
+    </div>
+
+    <div id="logo" class="logo">
+      MapConstraints
+    </div>
+
+  </body>
+</html>

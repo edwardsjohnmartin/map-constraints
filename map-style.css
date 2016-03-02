@@ -1,0 +1,74 @@
+/* make the body fill the window */
+html, body {
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+/* make any canvas fill its container */
+.canvas {
+    /*display: flex;
+    flex-flow: row;
+    width: 100%;
+    flex: 1 1 auto;*/
+    border: 1px dotted grey;
+    width: 100%;
+    height: 100%;
+}
+/* debug window */
+.debug {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    /*opacity: 0.4;*/
+    bottom: 10px;
+    left: 10px;
+}
+.number {
+    width: 30px;
+} 
+/* properties window */
+.properties {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    bottom: 10px;
+    right: 10px;
+}
+/* labels */
+.labels {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 1);
+    top: 10px;
+    left: 10px;
+}
+/* label */
+.label {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 1);
+    top: 10px;
+    left: 30px;
+}
+/* controls window */
+.controls {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    bottom: 10px;
+    right: 10px;
+}
+/* control button */
+.cbutton{
+    height:50px;
+    width:50px;
+}
+/* logo window */
+.logo {
+    position: absolute;
+    background-color: rgba(255, 255, 156, 0.8);
+    top: 20px;
+    left: 20px;
+    font-family: Impact;
+    font-size: 32px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    color: rgb(0, 0, 255);
+}
